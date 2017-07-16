@@ -1,0 +1,20 @@
+<job id="0" name="Empty">
+	<property name="Empty"/>
+</job>
+
+<job id="1" name="Hauler">
+	<property name="Hauler"/>
+</job>
+
+<job id="2" name="Farmer">
+	<property name="Farmer"/>
+</job>
+
+<job id="3" name="Lumberjack">
+	<property name="Lumberjack"/>
+</job>
+
+<job id="4" name="Carpenter">
+	<property name="Carpenter"/>
+</job>
+

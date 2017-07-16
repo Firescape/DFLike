@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<block id="0" name="Air">
+	<property name="Air"/>
+</block>
+
+<block id="1" name="Grass">
+	<property name="Opaque"/>
+	<property name="Solid"/>
+</block>
+
+<block id="2" name="Stone">
+	<property name="Opaque"/>
+	<property name="Solid"/>
+</block>
+
+<block id="3" name="Dirt">
+	<property name="Opaque"/>
+	<property name="Solid"/>
+	<property name="Gravity"/>
+</block>
+
+<block id="4" name="Plank">
+	<property name="Opaque"/>
+	<property name="Solid"/>
+</block>
+
+<block id="5" name="Water">
+	<property name="Solid"/>
+</block>
+
+<block id="6" name="Sand">
+	<property name="Opaque"/>
+	<property name="Solid"/>
+</block>
+
