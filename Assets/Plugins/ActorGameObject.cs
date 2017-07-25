@@ -3,9 +3,9 @@ using System.Collections;
 
 public class ActorGameObject : MonoBehaviour
 {
-	public Actor actor; 
-	
-	
+    public Actor actor;
+
+
 //	public void nextPath()
 //    {
 //		//Debug.Log("recieved message");

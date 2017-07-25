@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-public class CompletedTaskArgs:EventArgs
+public class CompletedTaskArgs : EventArgs
 {
     public Entity source;
 
@@ -10,4 +10,3 @@ public class CompletedTaskArgs:EventArgs
         this.source = source;
     }
 }
-

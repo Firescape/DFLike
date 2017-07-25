@@ -1,26 +1,32 @@
-
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System;
+using Object = UnityEngine.Object;
 
 public class World : object
 {
     public static Func<Point, Cell> getCell;
     public static World world;
-    private Point mapSize = G.mapSize;
-    [System.NonSerialized]
-    private int viewLevel = 23;
-    private string savePath = G.savePath;
+    public List<Actor> actorList = new List<Actor>();
+    private List<BlockInput> blockInputList = new List<BlockInput>();
+    public ChunkManager chunkManager;
     private Actor human2;
     private Actor human3;
-    private List<BlockInput> blockInputList = new List<BlockInput>();
-    public TerrainManager terrainManager;
-    public ChunkManager chunkManager;
+
+    private IEnumerable<Cell> invalidatedBlockList;
+    private Point mapSize = G.mapSize;
     public PathManager pathManager;
-    public List<Actor> actorList = new List<Actor>();
+    private string savePath = G.savePath;
+    private GameObject selectCube = new GameObject();
+    private Point selectEnd = new Point(-1, -1, -1);
+    private int selectMode = 0;
+    private Point selectStart = new Point(-1, -1, -1);
+    public TerrainManager terrainManager;
+
+    [NonSerialized] private int viewLevel = 23;
     //public EntityManager entityManager;
     //private Dictionary<IndexType, EntityIndex> entityIndices = new Dictionary<IndexType, EntityIndex>();
 
@@ -39,7 +45,7 @@ public class World : object
         //entityManager = new EntityManager(mapSize, terrainManager, pathManager.getNode, terrainManager.getCell);
 
 
-        World.getCell = terrainManager.getCell;
+        getCell = terrainManager.getCell;
         //entityManager.setupActor(new Actor(), new Point(2, 12, 3));
         //entityManager.setupActor(new Actor(), new Point(3, 12, 3));
         //entityManager.setupActor(new Actor(), new Point(4, 12, 3));
@@ -47,17 +53,11 @@ public class World : object
         //entityManager.blockInputList = blockInputList;
 
 
-        int[,,] stpMap = new int[2, 1, 2];
-        for (int i = 0; i < stpMap.GetLength(0); i++)
-        {
-            for (int i2 = 0; i2 < stpMap.GetLength(1); i2++)
-            {
-                for (int i3 = 0; i3 < stpMap.GetLength(2); i3++)
-                {
-                    stpMap[i, i2, i3] = 1;
-                }
-            }
-        }
+        var stpMap = new int[2, 1, 2];
+        for (var i = 0; i < stpMap.GetLength(0); i++)
+        for (var i2 = 0; i2 < stpMap.GetLength(1); i2++)
+        for (var i3 = 0; i3 < stpMap.GetLength(2); i3++)
+            stpMap[i, i2, i3] = 1;
 
         //entityManager.createDispatcher(new Dispatcher(1, stpMap, new int[]{BlockDef.getId("Plank")}), new Point(11, 12, 11), true);
 
@@ -68,7 +68,7 @@ public class World : object
         chunkManager.setViewLevel(viewLevel);
         //entityManager.createDispatcher(new Dispatcher(3, stpMap, new int[]{ BlockDef.getId("Plank")}), new Point(18, 2, 12), true);
 
-        selectCube = UnityEngine.Object.Instantiate(Resources.Load("WireCubePrefab")) as GameObject;
+        selectCube = Object.Instantiate(Resources.Load("WireCubePrefab")) as GameObject;
 
         setupActor(new Actor(), new Point(4, 12, 3));
     }
@@ -96,31 +96,25 @@ public class World : object
     }
 
 
-    Block getBlock(Point loc)
+    private Block getBlock(Point loc)
     {
         return terrainManager.getBlock(loc);
     }
 
-    void moveActor(Actor actor, Point loc, Point newLoc)
+    private void moveActor(Actor actor, Point loc, Point newLoc)
     {
         //getCell(loc).moveActorFromCell(actor, getCell(newLoc));
     }
 
-    IEnumerable<Cell> invalidatedBlockList;
-    int selectMode = 0;
-    Point selectStart = new Point(-1, -1, -1);
-    Point selectEnd = new Point(-1, -1, -1);
-    GameObject selectCube = new GameObject();
-
 
     public void CheckInput()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        GridHit hit = CastRay.castRay(64f, mapSize, getBlock);
+        var hit = CastRay.castRay(64f, mapSize, getBlock);
 
-        Vector3 cameraLoc = Camera.main.transform.position;
-        Point currentLoc = Point.ToPoint(cameraLoc);
+        var cameraLoc = Camera.main.transform.position;
+        var currentLoc = Point.ToPoint(cameraLoc);
 
         if (Input.GetKeyDown("q"))
         {
@@ -138,13 +132,10 @@ public class World : object
             if (Input.GetMouseButtonDown(0))
             {
                 if (hit != null)
-                {
                     removeBlock(hit.pos);
-                }
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1) && !Input.GetMouseButton(1))
             {
-
                 //float start = Time.realtimeSinceStartup;
                 //if(hit != null)
                 //{
@@ -154,25 +145,19 @@ public class World : object
 
                 if (hit != null)
                 {
-                    int[,,] stpMap = new int[1, 1, 1];
+                    var stpMap = new int[1, 1, 1];
                     stpMap[0, 0, 0] = 1;
-
-
                 }
             }
             else if (Input.GetKeyDown("p"))
             {
                 if (hit != null)
-                {
                     Debug.Log("Clicked " + hit.pos);
-                }
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (hit != null)
-                {
                     addBlock(hit.pos, 4, hit.side);
-                }
             }
             else if (Input.GetMouseButtonDown(1))
             {
@@ -188,17 +173,16 @@ public class World : object
 
                 //selectStart = 
                 Debug.Log(selectStart + "," + selectEnd);
-                DspMap map = createMap(selectStart, selectEnd);
+                var map = createMap(selectStart, selectEnd);
 
-                selectCube.GetComponent<WireCube>().size = new Vector3(map.GetLength(0), map.GetLength(1), map.GetLength(2));
-                selectCube.GetComponent<WireCube>().center = map.start.ToVector3() + selectCube.GetComponent<WireCube>().size / 2;
+                selectCube.GetComponent<WireCube>().size =
+                    new Vector3(map.GetLength(0), map.GetLength(1), map.GetLength(2));
+                selectCube.GetComponent<WireCube>().center =
+                    map.start.ToVector3() + selectCube.GetComponent<WireCube>().size / 2;
                 selectCube.GetComponent<WireCube>().draw = true;
 
                 if (Input.GetMouseButtonUp(2))
-                {
-
                     selectMode = 0;
-                }
             }
         }
     }
@@ -212,10 +196,8 @@ public class World : object
             G.debugString = "";
         }
 
-        foreach (Actor actor in actorList)
-        {
+        foreach (var actor in actorList)
             actor.Update();
-        }
 
 
         invalidatedBlockList = terrainManager.submitBlockInput(blockInputList);
@@ -227,8 +209,8 @@ public class World : object
 
     public DspMap createMap(Point start, Point end)
     {
-        Point newLoc = end - start + new Point(1, 1, 1);
-        Point tempLoc = new Point(0, 0, 0);
+        var newLoc = end - start + new Point(1, 1, 1);
+        var tempLoc = new Point(0, 0, 0);
         Debug.Log(newLoc);
         if (newLoc.x < 0 && newLoc.z < 0)
         {
@@ -265,26 +247,18 @@ public class World : object
         Debug.Log(newLoc);
         //newLoc = newLoc.
 
-        int[,,] map = new int[newLoc.x, newLoc.y, newLoc.z];
+        var map = new int[newLoc.x, newLoc.y, newLoc.z];
 
-        for (int i = 0; i < map.GetLength(0); i++)
+        for (var i = 0; i < map.GetLength(0); i++)
+        for (var i2 = 0; i2 < map.GetLength(1); i2++)
+        for (var i3 = 0; i3 < map.GetLength(2); i3++)
         {
-            for (int i2 = 0; i2 < map.GetLength(1); i2++)
-            {
-                for (int i3 = 0; i3 < map.GetLength(2); i3++)
-                {
-                    newLoc = start + new Point(i, i2, i3);
-                    if (getCell(newLoc).getTerrain().getType() == 0 &&
-                       getCell(newLoc + new Point(0, -1, 0)).getTerrain().getType() > 0)
-                    {
-                        map[i, i2, i3] = 1;
-                    }
-                    else
-                    {
-                        map[i, i2, i3] = 0;
-                    }
-                }
-            }
+            newLoc = start + new Point(i, i2, i3);
+            if (getCell(newLoc).getTerrain().getType() == 0 &&
+                getCell(newLoc + new Point(0, -1, 0)).getTerrain().getType() > 0)
+                map[i, i2, i3] = 1;
+            else
+                map[i, i2, i3] = 0;
         }
 
         return new DspMap(start, map);
@@ -296,25 +270,17 @@ public class World : object
         //testLambda();
         //testLambda2();
         //tester(16)();
-        int[,,] stpMap = new int[1, 1, 1];
-        for (int i = 0; i < stpMap.GetLength(0); i++)
-        {
-            for (int i2 = 0; i2 < stpMap.GetLength(1); i2++)
-            {
-                for (int i3 = 0; i3 < stpMap.GetLength(2); i3++)
-                {
-                    stpMap[i, i2, i3] = 1;
-                }
-            }
-        }
+        var stpMap = new int[1, 1, 1];
+        for (var i = 0; i < stpMap.GetLength(0); i++)
+        for (var i2 = 0; i2 < stpMap.GetLength(1); i2++)
+        for (var i3 = 0; i3 < stpMap.GetLength(2); i3++)
+            stpMap[i, i2, i3] = 1;
 
         //Debug.Log("breaking dispatcher " + getCell(loc).dispatcher);
     }
 
-    public void addBlock(Point loc, System.Byte val, int side)
+    public void addBlock(Point loc, byte val, int side)
     {
         blockInputList.Add(new BlockInput(new Block(val), loc + G.transList[side]));
     }
-
 }
-

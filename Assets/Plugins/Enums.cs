@@ -3,11 +3,11 @@ using System;
 public enum IndexType
 {
     None,
-	AvailableWorkers,
+    AvailableWorkers,
     DspWaitWorker,
     FreeItems,
     StpedItems,
     WstWaitItem,
     StpWaitItem,
-	Animals
+    Animals
 }

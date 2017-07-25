@@ -1,15 +1,15 @@
 using System;
 
-public interface IIndexable:ILocatable
+public interface IIndexable : ILocatable
 {
-	
-	int[] getType();
-	event Action OnDeIndex;
-	IIndexable Reserver {get; set;}
-	event Action<IIndexable> OnDereserve;
+    IIndexable Reserver { get; set; }
+
+    int[] getType();
+    event Action OnDeIndex;
+    event Action<IIndexable> OnDereserve;
 }
 
 public interface ILocatable
 {
-	Point getLoc();
+    Point getLoc();
 }

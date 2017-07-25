@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{B23DF30C-C28F-B851-8893-4D8F2B425275}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -52,88 +51,85 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Actor.cs" />
-    <Compile Include="Assets\Plugins\ActorGameObject.cs" />
-    <Compile Include="Assets\Plugins\ActorTask.cs" />
-    <Compile Include="Assets\Plugins\Array3D.cs" />
-    <Compile Include="Assets\Plugins\Block.cs" />
-    <Compile Include="Assets\Plugins\Block2.cs" />
-    <Compile Include="Assets\Plugins\BlockDef.cs" />
-    <Compile Include="Assets\Plugins\BlockInput.cs" />
-    <Compile Include="Assets\Plugins\CastRay.cs" />
-    <Compile Include="Assets\Plugins\Cell.cs" />
-    <Compile Include="Assets\Plugins\CellEventArgs.cs" />
-    <Compile Include="Assets\Plugins\Chunk.cs" />
-    <Compile Include="Assets\Plugins\ChunkManager.cs" />
-    <Compile Include="Assets\Plugins\CompletedTaskArgs.cs" />
-    <Compile Include="Assets\Plugins\DspGraphic.cs" />
-    <Compile Include="Assets\Plugins\DspMap.cs" />
-    <Compile Include="Assets\Plugins\Entity.cs" />
-    <Compile Include="Assets\Plugins\Enums.cs" />
-    <Compile Include="Assets\Plugins\Face.cs" />
-    <Compile Include="Assets\Plugins\G.cs" />
-    <Compile Include="Assets\Plugins\GridHit.cs" />
-    <Compile Include="Assets\Plugins\IIndexable.cs" />
-    <Compile Include="Assets\Plugins\Item2.cs" />
-    <Compile Include="Assets\Plugins\JobDef.cs" />
-    <Compile Include="Assets\Plugins\JsEventHandler.cs" />
-    <Compile Include="Assets\Plugins\Menu.cs" />
-    <Compile Include="Assets\Plugins\Mesh2.cs" />
-    <Compile Include="Assets\Plugins\MeshCombineUtility.cs" />
-    <Compile Include="Assets\Plugins\MeshSegment.cs" />
-    <Compile Include="Assets\Plugins\node.cs" />
-    <Compile Include="Assets\Plugins\ObjectLabel.cs" />
-    <Compile Include="Assets\Plugins\Pathfinder2.cs" />
-    <Compile Include="Assets\Plugins\PathManager.cs" />
-    <Compile Include="Assets\Plugins\PerlinNoise.cs" />
-    <Compile Include="Assets\Plugins\PerlinSimplexNoise.cs" />
-    <Compile Include="Assets\Plugins\Point.cs" />
-    <Compile Include="Assets\Plugins\Terrain.cs" />
-    <Compile Include="Assets\Plugins\TerrainChunk.cs" />
-    <Compile Include="Assets\Plugins\TerrainManager.cs" />
-    <Compile Include="Assets\Plugins\TextGizmo.cs" />
-    <Compile Include="Assets\Plugins\UIManager.cs" />
-    <Compile Include="Assets\Plugins\VersionDeserializationBinder.cs" />
-    <Compile Include="Assets\Plugins\WireCube.cs" />
-    <Compile Include="Assets\Plugins\World.cs" />
-    <Compile Include="Assets\Plugins\XMLNode.cs" />
-    <Compile Include="Assets\Plugins\XMLNodeList.cs" />
-    <Compile Include="Assets\Plugins\XMLParser.cs" />
-    <Compile Include="Assets\Plugins\Zone.cs" />
-    <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-    <Compile Include="Assets\Standard Assets\MathS.cs" />
-    <Compile Include="Assets\Standard Assets\MultiDim.cs" />
-    <Compile Include="Assets\Standard Assets\Resize.cs" />
-    <Compile Include="Assets\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
-    <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
-    <None Include="Assets\Assets\Resources\NewShader.shader" />
-    <None Include="Assets\Assets\Resources\New Text Document.txt" />
-    <None Include="Assets\Assets\Resources\Vertex Colored.shader" />
-    <None Include="Assets\Assets\Resources\Solid.shader" />
-    <None Include="Assets\Assets\Resources\Vertex color unlit.shader" />
-    <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
-    <None Include="Assets\Assets\Resources\VertexLit Colored.shader" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Timeline">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HoloLens">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\Plugins\Actor.cs" />
+     <Compile Include="Assets\Plugins\ActorGameObject.cs" />
+     <Compile Include="Assets\Plugins\ActorTask.cs" />
+     <Compile Include="Assets\Plugins\Block.cs" />
+     <Compile Include="Assets\Plugins\Block2.cs" />
+     <Compile Include="Assets\Plugins\BlockDef.cs" />
+     <Compile Include="Assets\Plugins\BlockInput.cs" />
+     <Compile Include="Assets\Plugins\CastRay.cs" />
+     <Compile Include="Assets\Plugins\Cell.cs" />
+     <Compile Include="Assets\Plugins\CellEventArgs.cs" />
+     <Compile Include="Assets\Plugins\Chunk.cs" />
+     <Compile Include="Assets\Plugins\ChunkManager.cs" />
+     <Compile Include="Assets\Plugins\CompletedTaskArgs.cs" />
+     <Compile Include="Assets\Plugins\DspGraphic.cs" />
+     <Compile Include="Assets\Plugins\DspMap.cs" />
+     <Compile Include="Assets\Plugins\Entity.cs" />
+     <Compile Include="Assets\Plugins\Enums.cs" />
+     <Compile Include="Assets\Plugins\Face.cs" />
+     <Compile Include="Assets\Plugins\G.cs" />
+     <Compile Include="Assets\Plugins\GridHit.cs" />
+     <Compile Include="Assets\Plugins\IIndexable.cs" />
+     <Compile Include="Assets\Plugins\Item2.cs" />
+     <Compile Include="Assets\Plugins\JobDef.cs" />
+     <Compile Include="Assets\Plugins\JsEventHandler.cs" />
+     <Compile Include="Assets\Plugins\Menu.cs" />
+     <Compile Include="Assets\Plugins\Mesh2.cs" />
+     <Compile Include="Assets\Plugins\MeshCombineUtility.cs" />
+     <Compile Include="Assets\Plugins\MeshSegment.cs" />
+     <Compile Include="Assets\Plugins\node.cs" />
+     <Compile Include="Assets\Plugins\ObjectLabel.cs" />
+     <Compile Include="Assets\Plugins\Pathfinder2.cs" />
+     <Compile Include="Assets\Plugins\PathManager.cs" />
+     <Compile Include="Assets\Plugins\PerlinNoise.cs" />
+     <Compile Include="Assets\Plugins\PerlinSimplexNoise.cs" />
+     <Compile Include="Assets\Plugins\Point.cs" />
+     <Compile Include="Assets\Plugins\Terrain.cs" />
+     <Compile Include="Assets\Plugins\TerrainChunk.cs" />
+     <Compile Include="Assets\Plugins\TerrainManager.cs" />
+     <Compile Include="Assets\Plugins\TextGizmo.cs" />
+     <Compile Include="Assets\Plugins\WireCube.cs" />
+     <Compile Include="Assets\Plugins\World.cs" />
+     <Compile Include="Assets\Plugins\XMLNode.cs" />
+     <Compile Include="Assets\Plugins\XMLNodeList.cs" />
+     <Compile Include="Assets\Plugins\XMLParser.cs" />
+     <Compile Include="Assets\Plugins\Zone.cs" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Standard Assets\MathS.cs" />
+     <Compile Include="Assets\Standard Assets\MultiDim.cs" />
+     <Compile Include="Assets\Standard Assets\Resize.cs" />
+     <Compile Include="Assets\Standard Assets\Scripts\General Scripts\ActivateTrigger.cs" />
+     <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
+     <None Include="Assets\Assets\Resources\NewShader.shader" />
+     <None Include="Assets\Assets\Resources\New Text Document.txt" />
+     <None Include="Assets\Assets\Resources\Vertex Colored.shader" />
+     <None Include="Assets\Assets\Resources\Solid.shader" />
+     <None Include="Assets\Assets\Resources\Vertex color unlit.shader" />
+     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
+     <None Include="Assets\Assets\Resources\VertexLit Colored.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Timeline">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -143,4 +139,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

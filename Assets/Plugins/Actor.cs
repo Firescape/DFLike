@@ -2,68 +2,73 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using Object = UnityEngine.Object;
 
 public enum ActorState
 {
-	Idle,
-	Moving,
-	Interacting,
-	Attacking
+    Idle,
+    Moving,
+    Interacting,
+    Attacking
 }
 
-public class Actor:Entity, IIndexable
+public class Actor : Entity, IIndexable
 {
-	[System.NonSerialized]
-	public GameObject gameObject;
-	private float rotation = 0;
-	private int jobCount = 3;
-	private Point nextTile;
-	public int[] jobList;
-	public Item2 heldObject;
-	[System.NonSerialized]
-	private GameObject heldObjectMesh;
-	public List<ActorTask> taskQueue = new List<ActorTask>();
-	public ActorTask currentTask;
-	public List<Node> path = new List<Node>();
-	public Node currentNode;
-	public Node nextNode;
-	public Entity reservedItem;
-	public Cell reservedCell;
-	public float speed;
-	public Vector3 velocity;
-	public Transform transform;
-	public event Action<Actor> nextTask;
-	public ActorState state = ActorState.Idle;
+    public Node currentNode;
+    public ActorTask currentTask;
 
-	public Actor()
-	{
-		//gameObject = GlobalList.GetInstance().mainClass.Instantiate(Resources.Load("HumanPrefab")) as GameObject;
-		
-		jobList = new int[jobCount];
-		
-		jobList[0] = JobDef.getId("Lumberjack");
-		jobList[1] = JobDef.getId("Carpenter");
-		jobList[2] = JobDef.getId("Hauler");
-		speed = 0.2f;
-		
-		gameObject = GameObject.Instantiate(Resources.Load("HumanPrefab")) as GameObject;
-		gameObject.GetComponent<ActorGameObject>().actor = this;
-		snapToGrid();
-		World.getCell(loc).addActor(this);
-		this.transform = gameObject.transform;
-	}
-	
+    [NonSerialized] public GameObject gameObject;
+
+    public Item2 heldObject;
+
+    [NonSerialized] private GameObject heldObjectMesh;
+
+    private int jobCount = 3;
+    public int[] jobList;
+    public Node nextNode;
+    private Point nextTile;
+    public List<Node> path = new List<Node>();
+    public Cell reservedCell;
+    public Entity reservedItem;
+    private float rotation = 0;
+    public float speed;
+    public ActorState state = ActorState.Idle;
+    public List<ActorTask> taskQueue = new List<ActorTask>();
+    public Transform transform;
+    public Vector3 velocity;
+
+    public Actor()
+    {
+        //gameObject = GlobalList.GetInstance().mainClass.Instantiate(Resources.Load("HumanPrefab")) as GameObject;
+
+        jobList = new int[jobCount];
+
+        jobList[0] = JobDef.getId("Lumberjack");
+        jobList[1] = JobDef.getId("Carpenter");
+        jobList[2] = JobDef.getId("Hauler");
+        speed = 0.2f;
+
+        gameObject = Object.Instantiate(Resources.Load("HumanPrefab")) as GameObject;
+        gameObject.GetComponent<ActorGameObject>().actor = this;
+        snapToGrid();
+        World.getCell(loc).addActor(this);
+        transform = gameObject.transform;
+    }
+
 //	
 //
-	public Point getLoc()
-	{
-		return loc;
-	}
+    public Point getLoc()
+    {
+        return loc;
+    }
 
-	public override int[] getType()
-	{
-		return jobList;
-	}
+    public override int[] getType()
+    {
+        return jobList;
+    }
+
+    public event Action<Actor> nextTask;
+
 //	
 //	
 //	public void init()
@@ -76,12 +81,13 @@ public class Actor:Entity, IIndexable
 //		this.transform = gameObject.transform;
 //	}
 //	
-	public void setLoc(Point loc)
-	{
-		//transform.position = new Vector3(loc.x, loc.y, loc.z);
-		this.loc = loc;
-		snapToGrid();
-	}
+    public void setLoc(Point loc)
+    {
+        //transform.position = new Vector3(loc.x, loc.y, loc.z);
+        this.loc = loc;
+        snapToGrid();
+    }
+
 //	
 //	public void queueItemPickup(Item2 item)
 //	{
@@ -147,34 +153,29 @@ public class Actor:Entity, IIndexable
 //		}
 //	}
 //	
-	public void Update()
-	{
-		if(state == ActorState.Idle)
-		{
-			if(taskQueue.Count > 0)
-			{
-				currentTask = taskQueue[0];
-				taskQueue.RemoveAt(0);
-				
-			}
-		}
-		
-		if(currentTask != null)
-		{
-			if(path == null)
-			{
-				
-			}
-		}
-	}
+    public void Update()
+    {
+        if (state == ActorState.Idle)
+            if (taskQueue.Count > 0)
+            {
+                currentTask = taskQueue[0];
+                taskQueue.RemoveAt(0);
+            }
+
+        if (currentTask != null)
+            if (path == null)
+            {
+            }
+    }
+
 //	
 //	
-	public void snapToGrid()
-	{
-		gameObject.transform.position = new Vector3(loc.x, loc.y, loc.z);
-		nextTile = loc;
-		Debug.Log(loc);
-	}
+    public void snapToGrid()
+    {
+        gameObject.transform.position = new Vector3(loc.x, loc.y, loc.z);
+        nextTile = loc;
+        Debug.Log(loc);
+    }
 //	
 //	public void sendTo(Point destLoc)
 //	{
@@ -199,6 +200,7 @@ public class Actor:Entity, IIndexable
 //        sendTo(destLoc);
 //        taskQueue.Add(new ActorTask(ActorTaskType.Pickup, 0));
 //        taskQueue[taskQueue.Count - 1].item = item;
+
 //    }
 //
 //    public void sendToAndBreak(Point accessLoc, Point blockLoc)
@@ -386,4 +388,3 @@ public class Actor:Entity, IIndexable
 //		setState(ActorState.Moving);
 //	}
 }
-

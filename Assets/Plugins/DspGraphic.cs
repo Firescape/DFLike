@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DspGraphic: object
+public class DspGraphic : object
 {
     public GameObject gameObject;
 
@@ -30,6 +30,5 @@ public class DspGraphic: object
         //}
 
         //graphic.Apply();
-
     }
 }
